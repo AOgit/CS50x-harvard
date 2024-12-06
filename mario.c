@@ -1,8 +1,8 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void space(int q);
-void block(int q);
+void print_row(int spaces, int bricks);
+void bricks_block(int bricks);
 
 int main(void)
 {
@@ -13,30 +13,31 @@ int main(void)
     }
     while (height < 1 || height > 8);
 
-    int i;
-    for (i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
-        space(height - i);
-        block(i);
-        printf("  ");
-        block(i);
-        printf("\n");
+        print_row(height - i - 1, i + 1 );
     }
 }
 
-void space(int q)
+void print_row(int spaces, int bricks)
 {
-    int i;
-    for (i = 0; i < q - 1; i++)
+    // Print spaces
+    for (int i = 0; i < spaces; i++)
     {
         printf(" ");
     }
+    // Print bricks
+    bricks_block(bricks);
+    // Print bricks delimiter
+    printf("  ");
+    // Print again bricks
+    bricks_block(bricks);
+    printf("\n");
 }
 
-void block(int q)
+void bricks_block(int bricks)
 {
-    int i;
-    for (i = 0; i <= q; i++)
+    for (int i = 0; i < bricks; i++)
     {
         printf("#");
     }
