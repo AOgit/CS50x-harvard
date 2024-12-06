@@ -15,7 +15,7 @@ int main(void)
 
     for (int i = 0; i < height; i++)
     {
-        print_row(height - i - 1, i + 1 );
+        print_row(height - i - 1, i + 1);
     }
 }
 
