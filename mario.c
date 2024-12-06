@@ -16,18 +16,18 @@ int main(void)
     // Print a pyramid of that height
     for (int i = 0; i < n; i++)
     {
-        print_row(n-i-1, i+1);
+        print_row(n - i - 1, i + 1);
     }
-
 }
 
 void print_row(int spaces, int bricks)
 {
+    // Print spaces
     for (int i = 0; i < spaces; i++)
     {
         printf(" ");
     }
-    
+    // Print bricks
     for (int i = 0; i < bricks; i++)
     {
         printf("#");
