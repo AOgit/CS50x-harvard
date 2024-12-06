@@ -11,12 +11,12 @@ int main(void)
     {
         height = get_int("Height: ");
     }
-    while(height<1 || height>8);
+    while (height < 1 || height > 8);
 
     int i;
-    for (i=0;i<height;i++)
+    for (i = 0; i < height; i++)
     {
-        space(height-i);
+        space(height - i);
         block(i);
         printf("  ");
         block(i);
@@ -27,7 +27,7 @@ int main(void)
 void space(int q)
 {
     int i;
-    for (i=0;i<q-1;i++)
+    for (i = 0; i < q - 1; i++)
     {
         printf(" ");
     }
@@ -36,7 +36,7 @@ void space(int q)
 void block(int q)
 {
     int i;
-    for (i=0;i<=q;i++)
+    for (i = 0; i <= q; i++)
     {
         printf("#");
     }
