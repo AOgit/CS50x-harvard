@@ -10,7 +10,8 @@ int main (void)
     {
         n = get_long ("Number: ");
     }
-    while (n < 4000000000000 || n > 5500000000000000);
+    while (n < 0);
+    // while (n < 4000000000000 || n > 5500000000000000);
     // printf ("%li\n", n);
 
     long rest_number=n;
