@@ -46,11 +46,12 @@ int coleman_index(string text)
        {
             sentences++;
        }
-       else if (isblank(text[i]) || i == len-1 )
+       else if (isblank(text[i]))
        {
             words++;
        }
     }
+    words++;
 
     // count avarage leters in 100 words
     float avg_letters = (float)letters / (float)words * 100;
