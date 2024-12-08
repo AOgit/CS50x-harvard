@@ -58,7 +58,7 @@ int coleman_index(string text)
     float avg_letters = (float) letters / (float) words * 100;
     // count avarage sentences in 100 words
     float avg_sentences = (float) sentences / (float) words * 100;
-    int index = round(0.0588 * avg_letters - 0.296 * avg_sentences - 15.8);
+    int index =  0.0588 * avg_letters - 0.296 * avg_sentences - 15.8;
 
     return index;
 }
