@@ -42,7 +42,7 @@ string rotate(int KEY, string str)
     for (int i = 0, len = strlen(str); i < len; i++)
     {
         // Rotate only letters
-        if ((str[i] > 'a' && str[i] < 'z') || (str[i] > 'A' && str[i] < 'Z'))
+        if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
         {
             ciphertext[i] = str[i] + KEY % 26;
         }
