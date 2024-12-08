@@ -44,7 +44,7 @@ string rotate(int KEY, string str)
         // Rotate only letters
         if (str[i] >= 'a' && str[i] <= 'z')
         {
-           ciphertext[i] = ('z' - str[i] >= KEY) ? str[i] + KEY : 'a' + (KEY - ('z' - str[i]) - 1);
+            ciphertext[i] = ('z' - str[i] >= KEY) ? str[i] + KEY : 'a' + (KEY - ('z' - str[i]) - 1);
         }
         else if (str[i] >= 'A' && str[i] <= 'Z')
         {
