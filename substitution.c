@@ -26,7 +26,7 @@ int main(int argc, string argv[])
     // Cipher text
     string ciphertext = cipher_text(key, plaintext);
     printf("ciphertext: %s\n", ciphertext);
-    return 0;
+
 }
 
 bool valid_key(string str)
@@ -41,7 +41,7 @@ bool valid_key(string str)
     }
 
     // Validate for alphabetic characters
-    for (int i=0; i < len; i++)
+    for (int i = 0; i < len; i++)
     {
         if (isalpha(str[i]))
         {
@@ -54,6 +54,17 @@ bool valid_key(string str)
             printf("Key must only contain alphabetic characters\n");
             return false;
         }
+
+        for (int j = i; j < len; j++)
+        {
+            if (toupper(str[i]) == toupper(str[j]))
+            {
+                printf("Key must not contain multirepeated characters\n");
+                return false;
+            }
+        }
+
+
     }
     // Validate for Uniq characters
     // Compute summ c decimals code of all capital letters S = (a1+an)*n/2
