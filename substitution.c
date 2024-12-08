@@ -55,7 +55,7 @@ bool valid_key(string str)
             return false;
         }
 
-        for (int j = i; j < len; j++)
+        for (int j = i+1; j < len; j++)
         {
             if (toupper(str[i]) == toupper(str[j]))
             {
