@@ -86,7 +86,7 @@ string cipher_text(string key, string str)
         }
         else
         {
-            int key_index = str[i] - 98;
+            int key_index = str[i] - 97;
             ciphertext[i] = tolower(key[key_index]);
         }
     }
