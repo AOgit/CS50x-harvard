@@ -18,7 +18,7 @@ int main(int argc, string argv[])
         return 1;
     }
     // Key validation
-    if(!valid_key(key))
+    if (!valid_key(key))
         return 1;
 
     // Plain text
@@ -26,7 +26,6 @@ int main(int argc, string argv[])
     // Cipher text
     string ciphertext = cipher_text(key, plaintext);
     printf("ciphertext: %s\n", ciphertext);
-
 }
 
 bool valid_key(string str)
@@ -34,7 +33,7 @@ bool valid_key(string str)
 
     int len = strlen(str);
     int summ_key = 0;
-    if (len !=26)
+    if (len != 26)
     {
         printf("Key must contain 26 characters\n");
         return false;
@@ -45,9 +44,9 @@ bool valid_key(string str)
     {
         if (isalpha(str[i]))
         {
-          str[i] = toupper(str[i]);
-          // Will be used below to check unique letters
-          summ_key += str[i];
+            str[i] = toupper(str[i]);
+            // Will be used below to check unique letters
+            // summ_key += str[i];
         }
         else
         {
@@ -55,7 +54,18 @@ bool valid_key(string str)
             return false;
         }
 
-        for (int j = i+1; j < len; j++)
+        /* // Not working. Look below
+        // Validate for Uniq characters
+        // Compute summ c decimals code of all capital letters S = (a1+an)*n/2
+        // Decimal A = 65, decimal Z = 90
+        int summ_cap_letters = (65+90)*26/2;
+        if (summ_cap_letters != summ_key)
+        {
+            printf("Key must not contain repeated characters\n");
+            return false;
+        }*/
+        // Validate for Uniq characters
+        for (int j = i + 1; j < len; j++)
         {
             if (toupper(str[i]) == toupper(str[j]))
             {
@@ -63,29 +73,17 @@ bool valid_key(string str)
                 return false;
             }
         }
-
-
     }
-    // Validate for Uniq characters
-    // Compute summ c decimals code of all capital letters S = (a1+an)*n/2
-    // Decimal A = 65, decimal Z = 90
-    int summ_cap_letters = (65+90)*26/2;
-    if (summ_cap_letters != summ_key)
-    {
-        printf("Key must not contain repeated characters\n");
-        return false;
-    }
+
     return true;
 }
-
 
 string cipher_text(string key, string str)
 {
     // Initial ciphertext
     string ciphertext = str;
 
-
-    for (int i=0, len = strlen(str); i < len; i++)
+    for (int i = 0, len = strlen(str); i < len; i++)
     {
         if (!isalpha(str[i]))
         {
@@ -93,8 +91,8 @@ string cipher_text(string key, string str)
         }
         else if (isupper(str[i]))
         {
-             int key_index = str[i] - 65;
-             ciphertext[i] = toupper(key[key_index]);
+            int key_index = str[i] - 65;
+            ciphertext[i] = toupper(key[key_index]);
         }
         else
         {
@@ -104,4 +102,3 @@ string cipher_text(string key, string str)
     }
     return ciphertext;
 }
-
