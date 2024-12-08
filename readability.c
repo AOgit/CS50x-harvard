@@ -9,12 +9,12 @@ int coleman_index(string text);
 int main(void)
 {
     string text = get_string("Text: ");
-   // string arr_word[0];
+    // string arr_word[0];
 
-   // compute Coleman-Liau index
-   int index = coleman_index(text);
+    // compute Coleman-Liau index
+    int index = coleman_index(text);
 
-   // show grade
+    // show grade
     if (index < 1)
     {
         printf("Before Grade 1\n");
@@ -35,28 +35,28 @@ int coleman_index(string text)
     int sentences = 0;
     int letters = 0;
 
-    //count letters, words, sentences
-    for (int i=0, len = strlen(text); i < len; i++)
+    // count letters, words, sentences
+    for (int i = 0, len = strlen(text); i < len; i++)
     {
-       if (isalpha(text[i]))
-       {
+        if (isalpha(text[i]))
+        {
             letters++;
-       }
-       else if (text[i] == '.' || text[i] == '!' || text[i] == '?' )
-       {
+        }
+        else if (text[i] == '.' || text[i] == '!' || text[i] == '?')
+        {
             sentences++;
-       }
-       else if (isblank(text[i]))
-       {
+        }
+        else if (isblank(text[i]))
+        {
             words++;
-       }
+        }
     }
     words++;
 
     // count avarage leters in 100 words
-    float avg_letters = (float)strlen(text) / (float)words * 100;
+    float avg_letters = (float) letters / (float) words * 100;
     // count avarage sentences in 100 words
-    float avg_sentences = (float)sentences / (float)words * 100;
+    float avg_sentences = (float) sentences / (float) words * 100;
     int index = round(0.0588 * avg_letters - 0.296 * avg_sentences - 15.8);
 
     return index;
