@@ -14,7 +14,7 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    int KEY = atoi(argv[1]);
+    int KEY = atoi(argv[1]) % 26;
 
     string plaintext = get_string("plaintext: ");
 
@@ -42,9 +42,13 @@ string rotate(int KEY, string str)
     for (int i = 0, len = strlen(str); i < len; i++)
     {
         // Rotate only letters
-        if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
+        if (str[i] >= 'a' && str[i] <= 'z')
         {
-            ciphertext[i] = str[i] + KEY % 26;
+           ciphertext[i] = ('z' - str[i] >= KEY) ? str[i] + KEY : 'a' + (KEY - ('z' - str[i]) - 1);
+        }
+        else if (str[i] >= 'A' && str[i] <= 'Z')
+        {
+            ciphertext[i] = ('Z' - str[i] >= KEY) ? str[i] + KEY : 'A' + (KEY - ('Z' - str[i]) - 1);
         }
     }
     return ciphertext;
