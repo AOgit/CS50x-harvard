@@ -35,7 +35,7 @@ int coleman_index(string text)
     int sentences = 0;
     int letters = 0;
 
-    // count letters, words, sentences
+    // Count letters, words, sentences
     for (int i = 0, len = strlen(text); i < len; i++)
     {
         if (isalpha(text[i]))
@@ -52,13 +52,13 @@ int coleman_index(string text)
         }
     }
     words++;
-    letters = strlen(text) - words;
 
-    // count avarage leters in 100 words
+    // letters = strlen(text) - words;
+    // Count avarage leters in 100 words
     float avg_letters = (float) letters / (float) words * 100;
-    // count avarage sentences in 100 words
+    // Count avarage sentences in 100 words
     float avg_sentences = (float) sentences / (float) words * 100;
-    int index =  0.0588 * avg_letters - 0.296 * avg_sentences - 15.8;
+    int index = round(0.0588 * avg_letters - 0.296 * avg_sentences - 15.8);
 
     return index;
 }
