@@ -26,6 +26,7 @@ int main(int argc, string argv[])
     // Cipher text
     string ciphertext = cipher_text(key, plaintext);
     printf("ciphertext: %s\n", ciphertext);
+    return 0;
 }
 
 bool valid_key(string str)
