@@ -16,8 +16,8 @@ user    0m6.176s
 sys     0m0.131s
 
 How do you know?:
-1.Sorted array sorted very fast in compare with reversed and random. This means Omega = n
-2. time reversed array is bigger than reversed
+1. Sorted array sorted very fast in compare with reversed and random. This means Omega = n
+2. Time reversed array is bigger than sorted
 
 sort2 uses: Merged sort
 
@@ -38,9 +38,9 @@ sys     0m0.126s
 
 How do you know?:
 
-1. same time for all arrays (sorted, reversed and random) and this time ist shortest in compare sort1 und sort3
+1. Same time for all arrays (sorted, reversed and random) and this time ist shortest in compare sort1 und sort3
 while dies type of sorting can effectively allocate sorting process in memory
-2. time between sorted and reversed array ist almost equal
+2. Time between sorted and reversed array ist almost equal
 
 
 sort3 uses: Selection sort
