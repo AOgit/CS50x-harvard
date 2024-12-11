@@ -66,30 +66,29 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-    bool exist = false;
     for (int i = 0; i < candidate_count; i++)
     {
         if (strcmp(name, candidates[i].name) == 0)
         {
             candidates[i].votes++;
-            exist = true;
+            return true;
         }
     }
-    return exist;
+    return false;
 }
 
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
 
-    selection_sort ();
-    printf ("%s\n", candidates[0].name);
+    selection_sort();
+    printf("%s\n", candidates[0].name);
 
     for (int i = 1; i < candidate_count; i++)
     {
-        if (candidates[i].votes < candidates[i-1].votes)
+        if (candidates[i].votes < candidates[i - 1].votes)
             break;
-        printf ("%s\n", candidates[i].name);
+        printf("%s\n", candidates[i].name);
     }
     return;
 }
@@ -98,7 +97,7 @@ void selection_sort(void)
 {
     candidate curr_candidate[1];
     candidate max_candidate[1];
-    int       max;
+    int max;
     // Selection sort
     for (int i = 0; i < candidate_count - 1; i++)
     {
@@ -107,10 +106,10 @@ void selection_sort(void)
         max_candidate[0] = candidates[i];
         for (int j = i + 1; j < candidate_count; j++)
         {
-          if (candidates[j].votes > max_candidate[0].votes)
-          {
-            max = j;
-            max_candidate[0] = candidates[j];
+            if (candidates[j].votes > max_candidate[0].votes)
+            {
+                max = j;
+                max_candidate[0] = candidates[j];
             }
         }
         candidates[i] = max_candidate[0];
