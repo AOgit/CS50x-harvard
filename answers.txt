@@ -1,0 +1,70 @@
+sort1 uses: Bubble sort
+
+time ./sort1 sorted50000.txt
+real    0m0.623s
+user    0m0.015s
+sys     0m0.123s
+
+time ./sort1 reversed50000.txt
+real    0m5.103s
+user    0m4.510s
+sys     0m0.128s
+
+time ./sort1 random50000.txt
+real    0m6.709s
+user    0m6.176s
+sys     0m0.131s
+
+How do you know?:
+1. Sorted array sorted very fast in compare with reversed and random. This means Omega = n
+2. Time reversed array is bigger than sorted
+
+sort2 uses: Merged sort
+
+time ./sort2 sorted50000.txt
+real    0m0.724s
+user    0m0.022s
+sys     0m0.124s
+
+time ./sort2 reversed50000.txt
+real    0m0.721s
+user    0m0.029s
+sys     0m0.111s
+
+time ./sort2 random50000.txt
+real    0m0.597s
+user    0m0.026s
+sys     0m0.126s
+
+How do you know?:
+
+1. Same time for all arrays (sorted, reversed and random) and this time ist shortest in compare sort1 und sort3
+while dies type of sorting can effectively allocate sorting process in memory
+2. Time between sorted and reversed array ist almost equal
+
+
+sort3 uses: Selection sort
+
+time ./sort3 sorted50000.txt
+real    0m3.051s
+user    0m2.426s
+sys     0m0.125s
+
+time ./sort3 reversed50000.txt
+real    0m3.624s
+user    0m2.721s
+sys     0m0.148s
+
+time ./sort3 random50000.txt
+real    0m3.735s
+user    0m2.602s
+sys     0m0.148s
+
+How do you know?:
+
+Selection sort:
+1. Same time for all arrays (sorted, reversed and random) and this time ist longest in compare sort1 und sort2
+2. Omega time is biggest for sorted array in compare sort1 und sort2. Omega = n*n for all arrays
+
+
+
