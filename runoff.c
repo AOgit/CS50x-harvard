@@ -1,5 +1,4 @@
 #include <cs50.h>
-#include <math.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -32,8 +31,6 @@ bool print_winner(void);
 int find_min(void);
 bool is_tie(int min);
 void eliminate(int min);
-
-int stage = 0;
 
 int main(int argc, string argv[])
 {
@@ -147,14 +144,16 @@ void tabulate(void)
     int candidat;
     for (int i = 0; i < voter_count; i++)
     {
-       candidat = preferences[i][stage];
-       if (!candidates[candidat].eliminated)
-       {
-        candidates[candidat].votes++;
-       }
-
+        for (int j = 0; i < candidate_count; i++)
+        {
+            candidat = preferences[i][j];
+            if (!candidates[candidat].eliminated)
+            {
+                    candidates[candidat].votes++;
+                    break;
+            }
+        }
     }
-    stage++;
     return;
 }
 
