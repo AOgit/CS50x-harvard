@@ -186,19 +186,15 @@ void lock_pairs(void)
 
     for (int i = 0; i < pair_count; i++)
     {
-
-       if (lockered[pairs[i].loser] == false)
-       {
+        if (lockered[pairs[i].loser] == false)
+        {
             lockered[pairs[i].loser] = true;
             counter_lockered++;
-       }
-
+        }
         if (counter_lockered < candidate_count)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
-
-
     }
     return;
 }
