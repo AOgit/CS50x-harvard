@@ -193,10 +193,10 @@ void lock_pairs(void)
             counter_lockered++;
        }
 
-    if (counter_lockered < candidate_count)
-    {
-        locked[pairs[i].winner][pairs[i].loser] = true;
-    }
+        if (counter_lockered < candidate_count)
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
 
 
     }
