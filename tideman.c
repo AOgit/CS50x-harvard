@@ -181,7 +181,7 @@ void lock_pairs(void)
 
     for (int n = 0; n < candidate_count; n++)
     {
-        lockered[candidate_count] = false;
+        lockered[n] = false;
     }
 
     for (int i = 0; i < pair_count; i++)
