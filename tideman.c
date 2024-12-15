@@ -179,9 +179,9 @@ void lock_pairs(void)
     bool lockered[candidate_count];
     int counter_lockered = 0;
 
-    for (int n = 0; n < pair_count; n++)
+    for (int n = 0; n < candidate_count; n++)
     {
-        lockered[pairs[n].loser] = false;
+        lockered[candidate_count] = false;
     }
 
     for (int i = 0; i < pair_count; i++)
