@@ -193,9 +193,9 @@ void lock_pairs(void)
         if (lockered[i] == false && )
         {
         loser[candidate_count] = true;
-        }*/
+        }
 
-    }
+    }*/
 
 
     return;
