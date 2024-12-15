@@ -182,13 +182,13 @@ void lock_pairs(void)
         lockered[n] = false;
     }
 
-    for (int i = 0; i < pair_count - 1; i++)
+  /*  for (int i = 0; i < pair_count - 1; i++)
     {
         locked[pairs[i].winner][pairs[i].loser] = true;
         lockered[candidate_count] = true;
     }
 
-   /*  for (int i = 0; i < candidate_count; i++)
+     for (int i = 0; i < candidate_count; i++)
     {
         if (lockered[i] == false && )
         {
