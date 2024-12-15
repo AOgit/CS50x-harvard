@@ -177,9 +177,9 @@ void sort_pairs(void)
 void lock_pairs(void)
 {
      bool lockered[candidate_count];
-    for (int n = 0; n < candidate_count; n++)
+    for (int n = 0; n < pair_count; n++)
     {
-        lockered[n] = false;
+        lockered[pairs[n].loser] = false;
     }
 
     int counter_lockered = 0;
@@ -193,7 +193,7 @@ void lock_pairs(void)
             counter_lockered++;
        }
 
-    if (counter_lockered <= candidate_count)
+    if (counter_lockered < candidate_count)
     {
         locked[pairs[i].winner][pairs[i].loser] = true;
     }
