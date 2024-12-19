@@ -50,14 +50,14 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     // Loop over all pixels
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width/2; j++)
+        for (int j = 0; j < width; j++)
         {
-            // if (j == width/2 )
-           //     break;
+             if (j == width/2 )
+                break;
             // Swap pixels
             sepia_ij = image[i][j];
-            image[i][j] = image[i][width - j];
-            image[i][width - j] = sepia_ij;
+            image[i][j] = image[i][width - j - 1];
+            image[i][width - j  - 1] = sepia_ij;
         }
     }
     return;
