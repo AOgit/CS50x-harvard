@@ -46,7 +46,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    int sepiaRed, sepiaGreen, sepiaBlue;
+    RGBTRIPLE sepia_ij;
     // Loop over all pixels
     for (int i = 0; i < height; i++)
     {
@@ -55,15 +55,9 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
              if (j == width/2 )
                 break;
             // Swap pixels
-            sepiaRed = image[i][j].rgbtRed;
-            sepiaGreen = image[i][j].rgbtGreen;
-            sepiaBlue = image[i][j].rgbtBlue;
-            image[i][j].rgbtRed = image[i][width - j].rgbtRed;
-            image[i][j].rgbtGreen = image[i][width - j].rgbtGreen;
-            image[i][j].rgbtBlue = image[i][width - j].rgbtBlue;
-            image[i][width - j].rgbtRed = sepiaRed;
-            image[i][width - j].rgbtGreen = sepiaGreen;
-            image[i][width - j].rgbtBlue = sepiaBlue;
+            sepia_ij = image[i][j];
+            image[i][j] = image[i][width - j];
+            image[i][width - j] = sepia_ij;
         }
     }
     return;
@@ -151,9 +145,15 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 summBlue += copy[i][j + 1].rgbtBlue;
                 counter++;
             }
-            image[i][j].rgbtRed = round((summRed + copy[i][j].rgbtRed) / (counter + 1.0));
-            image[i][j].rgbtGreen = round((summGreen + copy[i][j].rgbtGreen) / (counter + 1.0));
-            image[i][j].rgbtBlue = round((summBlue  + copy[i][j].rgbtBlue)/ (counter + 1.0));
+
+                summRed += copy[i][j].rgbtRed;
+                summGreen += copy[i][j].rgbtGreen;
+                summBlue += copy[i][j].rgbtBlue;
+                counter++;
+
+            image[i][j].rgbtRed = round(summRed / counter);
+            image[i][j].rgbtGreen = round(summGreen / counter);
+            image[i][j].rgbtBlue = round(summBlue / counter);
         }
     }
     return;
