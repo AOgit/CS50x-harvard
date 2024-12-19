@@ -69,12 +69,21 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     // Create a copy of image
     RGBTRIPLE copy[height][width];
 
-    // Loop over all pixels
+    // Copy all pixels
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
             copy[i][j] = image[i][j];
+        }
+    }
+
+    // Loop over all pixels
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+
 
             int summRed = 0;
             int summGreen= 0;
@@ -102,6 +111,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                         counter++;
                 }
             }
+
             if (i + 1 <= height - 1)
             {
                 summRed += copy[i + 1][j].rgbtRed;
