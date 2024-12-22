@@ -49,6 +49,6 @@ int main(int argc, char *argv[])
         }
 
     }
-   // fclose(outputfile);
+    fclose(outputfile);
     fclose(card);
 }
