@@ -18,7 +18,7 @@ typedef struct node
 } node;
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 26*45 + 45;
+const unsigned int N = (25 + 45) * 45 + 1;
 
 // Hash table
 node *table[N];
@@ -48,29 +48,26 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-
-
-
     // hash summ of word`s chars and place (unick hash?)
- /*    int i = 0;
+    int i = 0;
     int summ = 0;
     while (word[i] != '\0')
     {
         summ += word[i] !='\'' ?  (toupper(word[i]) - 'A') + i : 0;
         i++;
     }
-    return summ;*/
+    return summ;
 
 
     // hash summ of word`s chars
-    int i = 0;
+   /* int i = 0;
     int summ = 0;
     while (word[i] != '\0')
     {
         summ += word[i] !='\'' ?  toupper(word[i]) - 'A' : 0;
         i++;
     }
-    return summ;
+    return summ;*/
 
     // TODO: Improve this hash function
    //  return toupper(word[0]) - 'A';
@@ -93,6 +90,7 @@ bool load(const char *dictionary)
     node *new = malloc(sizeof(node));
     if (new == NULL)
     {
+        fclose(file);
         return false;
     }
 
@@ -118,6 +116,7 @@ bool load(const char *dictionary)
             new = malloc(sizeof(node));
             if (new == NULL)
             {
+                fclose(file);
                 return false;
             }
             size_dict++;
@@ -140,8 +139,7 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-   node *new;
-
+    node *new;
     for (int i = 0; i < N; i++)
     {
         new = table[i];
@@ -152,6 +150,5 @@ bool unload(void)
             new = table[i];
         }
     }
-    free(new);
     return true;
 }
