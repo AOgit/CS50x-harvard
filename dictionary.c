@@ -18,7 +18,7 @@ typedef struct node
 } node;
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = 26; //(26 + LENGTH) * LENGTH
+const unsigned int N  = (26 + LENGTH) * LENGTH;  /*= 26;*/
 
 // Hash table
 node *table[N];
@@ -49,31 +49,18 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // hash summ of word`s chars and place (unick hash?)
-   /*  int i = 0;
+    int i = 0;
     int summ = 0;
-    while (word[i] != '\0')
+      while (word[i] != '\0')
     {
-
-        summ += isalpha(word[i]) ? (toupper(word[i]) - 'A') : 0;
-        summ += isdigit(word[i]) ? atoi(&word[i]) : 0;
-        summ += (word[i] == '\'') ? 27 : 0;
+        summ += (word[i] == '\'') ? 27 + i : (toupper(word[i]) - 'A') + i;
         i++;
     }
-    return summ;*/
+    return summ;
 
 
-    // hash summ of word`s chars
-   /* int i = 0;
-    int summ = 0;
-    while (word[i] != '\0')
-    {
-        summ += word[i] !='\'' ?  toupper(word[i]) - 'A' : 0;
-        i++;
-    }
-    return summ;*/
-
-    // TODO: Improve this hash function
-     return toupper(word[0]) - 'A';
+     // TODO: Improve this hash function
+     //return toupper(word[0]) - 'A';
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -87,9 +74,6 @@ bool load(const char *dictionary)
         return false;
     }
 
-    char c;
-    int i = 0;
-    unsigned int hsh;
     node *new = malloc(sizeof(node));
     if (new == NULL)
     {
@@ -97,14 +81,41 @@ bool load(const char *dictionary)
         return false;
     }
 
+   unsigned int hsh;
+
+  /*   char word[LENGTH + 1];
+    while (fscanf(file, "%s", word) != EOF)
+    {
+            strcpy(new->word, word);
+            // Returns true if word is in dictionary, else false
+            hsh = hash(new->word);
+            if (table[hsh] == NULL)
+            {
+                table[hsh] = new;
+            } else {
+                new->next = table[hsh];
+                table[hsh] = new;
+            }
+
+            new = malloc(sizeof(node));
+            if (new == NULL)
+            {
+                fclose(file);
+                return false;
+            }
+
+            size_dict++;
+    }*/
+
+    int i = 0;
+    char c;
     while (fread(&c, 1, sizeof(char), file))
     {
-
         if (c != '\n' )
         {
             new->word[i] = c;
             i++;
-        }else
+        } else if (i > 0)
         {
             new->word[i] = '\0';
             // Returns true if word is in dictionary, else false
@@ -117,17 +128,16 @@ bool load(const char *dictionary)
                 table[hsh] = new;
             }
 
-
             new = malloc(sizeof(node));
             if (new == NULL)
             {
                 fclose(file);
                 return false;
             }
+
             size_dict++;
             i = 0;
         }
-
     }
 
     free(new);
@@ -145,6 +155,7 @@ unsigned int size(void)
 bool unload(void)
 {
     node *new;
+    new = table[0];
     for (int i = 0; i < N; i++)
     {
         new = table[i];
