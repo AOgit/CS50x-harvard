@@ -150,5 +150,6 @@ bool unload(void)
             new = table[i];
         }
     }
+    free(new);
     return true;
 }
