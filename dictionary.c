@@ -70,7 +70,7 @@ unsigned int hash(const char *word)
         summ += word[i] !='\'' ?  toupper(word[i]) - 'A' : 0;
         i++;
     }
-    return summ; 
+    return summ;
 
     // TODO: Improve this hash function
    //  return toupper(word[0]) - 'A';
@@ -152,5 +152,6 @@ bool unload(void)
             new = table[i];
         }
     }
+    free(new);
     return true;
 }
