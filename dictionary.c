@@ -99,7 +99,8 @@ bool load(const char *dictionary)
 
     while (fread(&c, 1, sizeof(char), file))
     {
-        if (c != '\n')
+
+        if (c != '\n' )
         {
             new->word[i] = c;
             i++;
@@ -112,9 +113,10 @@ bool load(const char *dictionary)
             {
                 table[hsh] = new;
             } else {
-                new->next = table[hsh]->next;
-                table[hsh]->next = new;
+                new->next = table[hsh];
+                table[hsh] = new;
             }
+
 
             new = malloc(sizeof(node));
             if (new == NULL)
@@ -143,7 +145,7 @@ unsigned int size(void)
 bool unload(void)
 {
     node *new;
-    for (int i = 0; i < 26; i++)
+    for (int i = 0; i < N; i++)
     {
         new = table[i];
         while (new != NULL)
