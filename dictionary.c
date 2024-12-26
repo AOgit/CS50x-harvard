@@ -80,6 +80,7 @@ bool load(const char *dictionary)
         fclose(file);
         return false;
     }
+    new->next = NULL;
 
    unsigned int hsh;
 
@@ -134,7 +135,7 @@ bool load(const char *dictionary)
                 fclose(file);
                 return false;
             }
-
+            new->next = NULL;
             size_dict++;
             i = 0;
         }
