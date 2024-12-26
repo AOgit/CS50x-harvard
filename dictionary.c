@@ -18,7 +18,7 @@ typedef struct node
 } node;
 
 // TODO: Choose number of buckets in hash table
-const unsigned int N = (25 + 45) * 45 + 1;
+const unsigned int N = 26; //(26 + LENGTH) * LENGTH
 
 // Hash table
 node *table[N];
@@ -49,14 +49,17 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // hash summ of word`s chars and place (unick hash?)
-    int i = 0;
+   /*  int i = 0;
     int summ = 0;
     while (word[i] != '\0')
     {
-        summ += word[i] !='\'' ?  (toupper(word[i]) - 'A') + i : 0;
+
+        summ += isalpha(word[i]) ? (toupper(word[i]) - 'A') : 0;
+        summ += isdigit(word[i]) ? atoi(&word[i]) : 0;
+        summ += (word[i] == '\'') ? 27 : 0;
         i++;
     }
-    return summ;
+    return summ;*/
 
 
     // hash summ of word`s chars
@@ -70,7 +73,7 @@ unsigned int hash(const char *word)
     return summ;*/
 
     // TODO: Improve this hash function
-   //  return toupper(word[0]) - 'A';
+     return toupper(word[0]) - 'A';
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -150,6 +153,5 @@ bool unload(void)
             new = table[i];
         }
     }
-    free(new);
     return true;
 }
