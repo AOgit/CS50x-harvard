@@ -143,7 +143,7 @@ unsigned int size(void)
 bool unload(void)
 {
     node *new;
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < 26; i++)
     {
         new = table[i];
         while (new != NULL)
