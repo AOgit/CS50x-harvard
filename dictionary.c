@@ -52,17 +52,17 @@ unsigned int hash(const char *word)
 
 
     // hash summ of word`s chars and place (unick hash?)
-    int i = 0;
+ /*    int i = 0;
     int summ = 0;
     while (word[i] != '\0')
     {
         summ += word[i] !='\'' ?  (toupper(word[i]) - 'A') + i : 0;
         i++;
     }
-    return summ;
+    return summ;*/
 
 
-  /*  // hash summ of word`s chars
+    // hash summ of word`s chars
     int i = 0;
     int summ = 0;
     while (word[i] != '\0')
@@ -70,7 +70,7 @@ unsigned int hash(const char *word)
         summ += word[i] !='\'' ?  toupper(word[i]) - 'A' : 0;
         i++;
     }
-    return summ;*/
+    return summ; 
 
     // TODO: Improve this hash function
    //  return toupper(word[0]) - 'A';
