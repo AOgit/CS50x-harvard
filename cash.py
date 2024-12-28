@@ -10,6 +10,7 @@ coins = [25, 10, 5, 1]
 amount_coins = 0
 change = change * 100
 
+# Count amount of coins
 for coin in coins:
     if change >= coin:
         div = int(change / coin)
@@ -17,7 +18,3 @@ for coin in coins:
         change -= coin * div
 
 print(amount_coins)
-
-
-
-
