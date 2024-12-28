@@ -14,7 +14,7 @@ for coin in coins:
     if change >= coin:
         div = int(change / coin)
         amount_coins += div
-        change -= amount_coins * div
+        change -= coin * div
 
 print(amount_coins)
 
