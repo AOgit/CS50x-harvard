@@ -5,6 +5,6 @@ height = 0
 while not (height > 0 and height < 9):
     height = get_int("Heigth: ")
 
-
+# Print blocks
 for i in range(height):
     print(f" " * (height - i - 1) + "#" * (i + 1) + "  " + "#" * (i + 1))
