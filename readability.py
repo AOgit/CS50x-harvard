@@ -4,7 +4,7 @@ def main():
     text = input("Text: ")
 
     # Compute Coleman-Liau index
-    index = coleman_index(text);
+    index = coleman_index(text)
 
     # Show grade
     if index < 1:
@@ -25,7 +25,7 @@ def coleman_index(text):
             letters += 1
         elif (text[i] == '.' or text[i] == '!' or text[i] == '?'):
             sentences += 1
-        elif text[i]==" ":
+        elif text[i] == " ":
             words += 1
     words += 1
 
@@ -35,5 +35,6 @@ def coleman_index(text):
     avg_sentences = sentences / words * 100
     index = round(0.0588 * avg_letters - 0.296 * avg_sentences - 15.8)
     return index
+
 
 main()
