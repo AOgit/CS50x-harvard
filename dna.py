@@ -1,6 +1,7 @@
 import csv
 import sys
 
+
 def main():
 
     # TODO: Check for command-line usage
@@ -8,13 +9,11 @@ def main():
         print("Missing command-line argument")
         sys.exit(1)
 
-
     # TODO: Read database file into a variable
-
     database = []
     with open(sys.argv[1]) as file:
         reader = csv.DictReader(file)
-        strs =  reader.fieldnames[1:]
+        strs = reader.fieldnames[1:]
         for row in reader:
             database.append(row)
 
@@ -23,14 +22,12 @@ def main():
         sequence = file.read()
 
     # TODO: Find longest match of each STR in DNA sequence
-
     curr = dict()
     for str in strs:
         lenght = longest_match(sequence, str)
         curr[str] = lenght
 
     # TODO: Check database for matching profiles
-
     for row in database:
         found = True
         for str in strs:
@@ -42,7 +39,6 @@ def main():
             break
     else:
         print("No match")
-
 
     return
 
