@@ -6,7 +6,7 @@ sqlite> SELECT AVG(danceability + energy + valence) FROM songs;
 +--------------------------------------+
 
 
-Better way:
+Better separate way:
 sqlite> SELECT AVG(danceability), AVG(energy), AVG(valence) FROM songs;
 +-------------------+-------------+--------------+
 | AVG(danceability) | AVG(energy) | AVG(valence) |
