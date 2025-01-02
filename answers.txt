@@ -1,0 +1,15 @@
+sqlite> SELECT AVG(danceability + energy + valence) FROM songs;
++--------------------------------------+
+| AVG(danceability + energy + valence) |
++--------------------------------------+
+| 1.859963                             |
++--------------------------------------+
+
+
+Better separate way:
+sqlite> SELECT AVG(danceability), AVG(energy), AVG(valence) FROM songs;
++-------------------+-------------+--------------+
+| AVG(danceability) | AVG(energy) | AVG(valence) |
++-------------------+-------------+--------------+
+| 0.71646           | 0.65906     | 0.484443     |
++-------------------+-------------+--------------+
