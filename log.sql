@@ -66,7 +66,9 @@ WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND atm_location = "Leggett Street"
 | Benista | 8X428L0       | 313 | 81061156       | 2024 | 7     | 28  | Leggett Street | withdraw         | 30     |
 +---------+---------------+-----+----------------+------+-------+-----+----------------+------------------+--------+
 
--- Discover flights table
+
+
+-- Discover flights table  Earliest flight out of Fiftyville to (ESCAPED TO) New York City (fly id = 36)
 SELECT origin.city AS origin_city, dest.city AS dest_city, flights.*
 FROM flights
 JOIN airports AS origin ON origin.id = flights.origin_airport_id
@@ -85,8 +87,6 @@ ORDER BY hour
 | Fiftyville  | Tokyo         | 53 | 8                 | 9                      | 2024 | 7     | 29  | 15   | 20     |
 | Fiftyville  | Boston        | 18 | 8                 | 6                      | 2024 | 7     | 29  | 16   | 0      |
 +-------------+---------------+----+-------------------+------------------------+------+-------+-----+------+--------+
-
-LaGuardia Airport  is  destination_airport and fly id = 36
 
 -- Discover passengers table
 SELECT people.*, passengers.*
@@ -108,36 +108,8 @@ WHERE flight_id = 36;
 
 -- get 2 person in this flight who talking with each other
 
-SELECT *
-FROM phone_calls
-WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28
-AND receiver IN
-(
-	SELECT people.phone_number
-	FROM passengers
-	JOIN people ON people.passport_number = passengers.passport_number
-	WHERE flight_id = 36
-)
-AND caller IN
-(
-	SELECT people.phone_number
-	FROM passengers
-	JOIN people ON people.passport_number = passengers.passport_number
-	WHERE flight_id = 36
-);
 
-+-----+----------------+----------------+------+-------+-----+----------+
-| id  |     caller     |    receiver    | year | month | day | duration |
-+-----+----------------+----------------+------+-------+-----+----------+
-| 279 | (826) 555-1652 | (066) 555-9701 | 2024 | 7     | 28  | 55       |
-+-----+----------------+----------------+------+-------+-----+----------+
-
-
--- Caller (Theaf) -  Kenny, ACCOMPLICE - Doris, Escape to LaGuardia
-
-
-
--- recognize the thief
+-- recognize the THIEF taking into account all of the above
 SELECT *
 FROM people
 WHERE
@@ -182,7 +154,7 @@ AND people.id IN
 SELECT phone_calls.*, people.name AS receiver_name
 FROM phone_calls
 JOIN people ON people.phone_number = phone_calls.receiver
-WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28
+WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND duration <=60
 AND caller = "(367) 555-5533"
 
 +-----+----------------+----------------+------+-------+-----+----------+---------------+
