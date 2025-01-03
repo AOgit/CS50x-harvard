@@ -182,7 +182,7 @@ AND people.id IN
 SELECT phone_calls.*, people.name AS receiver_name
 FROM phone_calls
 JOIN people ON people.phone_number = phone_calls.receiver
-WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND duration <=60
+WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28
 AND caller = "(367) 555-5533"
 
 +-----+----------------+----------------+------+-------+-----+----------+---------------+
