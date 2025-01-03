@@ -67,7 +67,7 @@ WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND atm_location = "Leggett Street"
 +---------+---------------+-----+----------------+------+-------+-----+----------------+------------------+--------+
 
 -- Discover flights table
-SELECT origin.full_name AS origin_name, dest.full_name AS dest_name, flights.*
+SELECT origin.city AS origin_city, dest.city AS dest_city, flights.*
 FROM flights
 JOIN airports AS origin ON origin.id = flights.origin_airport_id
 JOIN airports AS dest ON dest.id = flights.destination_airport_id
@@ -76,15 +76,15 @@ AND YEAR = 2024 AND MONTH = 7 AND DAY = 29
 ORDER BY hour
 /*LIMIT 1;*/
 
-+-----------------------------+-------------------------------------+----+-------------------+------------------------+------+-------+-----+------+--------+
-|         origin_name         |              dest_name              | id | origin_airport_id | destination_airport_id | year | month | day | hour | minute |
-+-----------------------------+-------------------------------------+----+-------------------+------------------------+------+-------+-----+------+--------+
-| Fiftyville Regional Airport | LaGuardia Airport                   | 36 | 8                 | 4                      | 2024 | 7     | 29  | 8    | 20     |
-| Fiftyville Regional Airport | O'Hare International Airport        | 43 | 8                 | 1                      | 2024 | 7     | 29  | 9    | 30     |
-| Fiftyville Regional Airport | San Francisco International Airport | 23 | 8                 | 11                     | 2024 | 7     | 29  | 12   | 15     |
-| Fiftyville Regional Airport | Tokyo International Airport         | 53 | 8                 | 9                      | 2024 | 7     | 29  | 15   | 20     |
-| Fiftyville Regional Airport | Logan International Airport         | 18 | 8                 | 6                      | 2024 | 7     | 29  | 16   | 0      |
-+-----------------------------+-------------------------------------+----+-------------------+------------------------+------+-------+-----+------+--------+
++-------------+---------------+----+-------------------+------------------------+------+-------+-----+------+--------+
+| origin_city |   dest_city   | id | origin_airport_id | destination_airport_id | year | month | day | hour | minute |
++-------------+---------------+----+-------------------+------------------------+------+-------+-----+------+--------+
+| Fiftyville  | New York City | 36 | 8                 | 4                      | 2024 | 7     | 29  | 8    | 20     |
+| Fiftyville  | Chicago       | 43 | 8                 | 1                      | 2024 | 7     | 29  | 9    | 30     |
+| Fiftyville  | San Francisco | 23 | 8                 | 11                     | 2024 | 7     | 29  | 12   | 15     |
+| Fiftyville  | Tokyo         | 53 | 8                 | 9                      | 2024 | 7     | 29  | 15   | 20     |
+| Fiftyville  | Boston        | 18 | 8                 | 6                      | 2024 | 7     | 29  | 16   | 0      |
++-------------+---------------+----+-------------------+------------------------+------+-------+-----+------+--------+
 
 LaGuardia Airport  is  destination_airport and fly id = 36
 
