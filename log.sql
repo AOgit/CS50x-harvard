@@ -47,24 +47,24 @@ SELECT bakery_security_logs.*, people.name
 
 -- Discover atm_transactions table and persons, who withdraw money
 
-SELECT people.name, atm_transactions.*
+SELECT people.name, people.license_plate,  atm_transactions.*
 FROM atm_transactions
 JOIN bank_accounts ON bank_accounts.account_number = atm_transactions.account_number
 JOIN people ON people.id = bank_accounts.person_id
 WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND atm_location = "Leggett Street" AND transaction_type = "withdraw";
 
-+---------+-----+----------------+------+-------+-----+----------------+------------------+--------+
-|  name   | id  | account_number | year | month | day |  atm_location  | transaction_type | amount |
-+---------+-----+----------------+------+-------+-----+----------------+------------------+--------+
-| Bruce   | 267 | 49610011       | 2024 | 7     | 28  | Leggett Street | withdraw         | 50     |
-| Diana   | 336 | 26013199       | 2024 | 7     | 28  | Leggett Street | withdraw         | 35     |
-| Brooke  | 269 | 16153065       | 2024 | 7     | 28  | Leggett Street | withdraw         | 80     |
-| Kenny   | 264 | 28296815       | 2024 | 7     | 28  | Leggett Street | withdraw         | 20     |
-| Iman    | 288 | 25506511       | 2024 | 7     | 28  | Leggett Street | withdraw         | 20     |
-| Luca    | 246 | 28500762       | 2024 | 7     | 28  | Leggett Street | withdraw         | 48     |
-| Taylor  | 266 | 76054385       | 2024 | 7     | 28  | Leggett Street | withdraw         | 60     |
-| Benista | 313 | 81061156       | 2024 | 7     | 28  | Leggett Street | withdraw         | 30     |
-+---------+-----+----------------+------+-------+-----+----------------+------------------+--------+
++---------+---------------+-----+----------------+------+-------+-----+----------------+------------------+--------+
+|  name   | license_plate | id  | account_number | year | month | day |  atm_location  | transaction_type | amount |
++---------+---------------+-----+----------------+------+-------+-----+----------------+------------------+--------+
+| Bruce   | 94KL13X       | 267 | 49610011       | 2024 | 7     | 28  | Leggett Street | withdraw         | 50     |
+| Diana   | 322W7JE       | 336 | 26013199       | 2024 | 7     | 28  | Leggett Street | withdraw         | 35     |
+| Brooke  | QX4YZN3       | 269 | 16153065       | 2024 | 7     | 28  | Leggett Street | withdraw         | 80     |
+| Kenny   | 30G67EN       | 264 | 28296815       | 2024 | 7     | 28  | Leggett Street | withdraw         | 20     |
+| Iman    | L93JTIZ       | 288 | 25506511       | 2024 | 7     | 28  | Leggett Street | withdraw         | 20     |
+| Luca    | 4328GD8       | 246 | 28500762       | 2024 | 7     | 28  | Leggett Street | withdraw         | 48     |
+| Taylor  | 1106N58       | 266 | 76054385       | 2024 | 7     | 28  | Leggett Street | withdraw         | 60     |
+| Benista | 8X428L0       | 313 | 81061156       | 2024 | 7     | 28  | Leggett Street | withdraw         | 30     |
++---------+---------------+-----+----------------+------+-------+-----+----------------+------------------+--------+
 
 -- Discover flights table
 SELECT origin.full_name AS origin_name, dest.full_name AS dest_name, flights.*
@@ -132,4 +132,62 @@ AND caller IN
 | 279 | (826) 555-1652 | (066) 555-9701 | 2024 | 7     | 28  | 55       |
 +-----+----------------+----------------+------+-------+-----+----------+
 
+
 -- Caller (Theaf) -  Kenny, ACCOMPLICE - Doris, Escape to LaGuardia
+
+
+
+-- recognize the thief
+SELECT *
+FROM people
+WHERE
+people.id IN
+(
+	SELECT people.id
+	FROM bakery_security_logs
+	JOIN people ON people.license_plate = bakery_security_logs.license_plate
+	WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND hour = 10 AND (minute >= 15 AND minute <= 25)
+)
+AND people.id IN
+(
+	SELECT people.id
+	FROM atm_transactions
+	JOIN bank_accounts ON bank_accounts.account_number = atm_transactions.account_number
+	JOIN people ON people.id = bank_accounts.person_id
+	WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND atm_location = "Leggett Street" AND transaction_type = "withdraw"
+)
+AND people.id IN
+(
+	SELECT people.id
+	FROM passengers
+	JOIN people ON people.passport_number = passengers.passport_number
+	WHERE flight_id = 36
+)
+AND people.id IN
+(
+	SELECT people.id
+	FROM phone_calls
+	JOIN people ON people.phone_number = phone_calls.caller
+	WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND duration <=60
+);
+
++--------+-------+----------------+-----------------+---------------+
+|   id   | name  |  phone_number  | passport_number | license_plate |
++--------+-------+----------------+-----------------+---------------+
+| 686048 | Bruce | (367) 555-5533 | 5773159633      | 94KL13X       |
++--------+-------+----------------+-----------------+---------------+
+
+-- recognize the ACCOMPLICE
+
+SELECT phone_calls.*, people.name AS receiver_name
+FROM phone_calls
+JOIN people ON people.phone_number = phone_calls.receiver
+WHERE YEAR = 2024 AND MONTH = 7 AND DAY = 28 AND duration <=60
+AND caller = "(367) 555-5533"
+
++-----+----------------+----------------+------+-------+-----+----------+---------------+
+| id  |     caller     |    receiver    | year | month | day | duration | receiver_name |
++-----+----------------+----------------+------+-------+-----+----------+---------------+
+| 233 | (367) 555-5533 | (375) 555-8161 | 2024 | 7     | 28  | 45       | Robin         |
++-----+----------------+----------------+------+-------+-----+----------+---------------+
+
