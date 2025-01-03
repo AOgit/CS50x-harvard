@@ -149,7 +149,7 @@ AND people.id IN
 | 686048 | Bruce | (367) 555-5533 | 5773159633      | 94KL13X       |
 +--------+-------+----------------+-----------------+---------------+
 
--- recognize the ACCOMPLICE
+-- recognize the ACCOMPLICE by call
 
 SELECT phone_calls.*, people.name AS receiver_name
 FROM phone_calls
