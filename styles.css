@@ -1,0 +1,46 @@
+p
+{
+    text-align: justify;
+    text-indent: 20px;
+}
+h1, h2, h3
+{
+    padding: 10px;
+}
+
+.list-group-item
+{
+    cursor: pointer;
+}
+
+.main-text > h1
+{
+    color: #3f3f87;
+}
+
+.main-text > p:first-of-type
+{
+    font-style: italic;
+    font-style: oblique;
+}
+
+.links {
+    text-align: left;
+    line-height: 2.5;
+}
+
+header {
+    background-color: #007acc;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+.team-member {
+    margin-bottom: 20px;
+}
+.team-member h3 {
+    margin-top: 10px;
+}
+.team-foto {
+    width: 100%;
+}
