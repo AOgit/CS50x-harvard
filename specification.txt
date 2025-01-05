@@ -1,0 +1,4 @@
+I used the following tags: <p>, <div>, <strong>, <img>, <ul>, <ol>, <a>, <h1>, <h2>, <h3>, <b>, <i>, <hr>
+I used the following CSS properties: text-align, line-height, text-indent, background-color, color, padding, cursor, margin, witdh
+In this project I used Bootstrap Grid, Bootstrap Navbar, Navs and tabs
+I also  used Javascript, in order to manage click events and assign classes to tags.
