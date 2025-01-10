@@ -65,8 +65,13 @@ def buy():
         if not info:
             return apology("Invalid symbol")
         shares = int(request.form.get("shares"))
+        try:
+            int(shares)
+        except:
+            return apology("Shares must be a positive number", 400)
+
         if shares <= 0:
-            return apology("Shares must be a positive number")
+            return apology("Shares must be a positive number", 400)
 
         user_id = session.get("user_id")
         balance = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
@@ -153,11 +158,9 @@ def quote():
             if info:
                 return render_template("quoted.html", info=info)
             else:
-                flash("Information about this stock was not found")
-                return redirect("/quote")
+                return apology("Information about this stock was not found", 400)
         else:
-            flash("Enter stock symbol")
-            return redirect("/quote")
+            return apology("Enter stock symbol", 400)
     else:
         return render_template("quote.html")
 
@@ -170,11 +173,11 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         if not username:
-            return apology("Please, specify the Username", 403)
+            return apology("Please, specify the Username", 400)
         if not password or not confirmation:
-            return apology("Please, specify the Password and Confirmation", 403)
+            return apology("Please, specify the Password and Confirmation", 400)
         if password != confirmation:
-            return apology("Password not equal Confirmation", 403)
+            return apology("Password not equal Confirmation", 400)
 
         # rows = db.execute("SELECT * FROM users WHERE username = ?", username)
         # if len(rows):
