@@ -64,9 +64,8 @@ def buy():
         info = lookup(request.form.get("symbol"))
         if not info:
             return apology("Invalid symbol")
-        shares = int(request.form.get("shares"))
         try:
-            int(shares)
+            shares = int(request.form.get("shares"))
         except:
             return apology("Shares must be a positive number", 400)
 
