@@ -36,24 +36,20 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
     user_id = session.get("user_id")
-    rows = db.execute("SELECT symbol, SUM(shares) AS shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
+    rows = db.execute(
+        "SELECT symbol, SUM(shares) AS shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
     total = 0
     stocks = []
     for row in rows:
         info = lookup(row["symbol"])
         amount = row["shares"] * info["price"]
-        stocks.append({ "symbol": row["symbol"], "shares": row["shares"], "price": info["price"], "amount": amount })
+        stocks.append({"symbol": row["symbol"], "shares": row["shares"],
+                      "price": info["price"], "amount": amount})
         total += amount
 
     balance = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
     total += balance[0]["cash"]
     return render_template("index.html", stocks=stocks, cash=balance[0]["cash"], total=total)
-
-
-
-
-
-    return apology("TODO")
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -78,7 +74,8 @@ def buy():
         rest = balance[0]["cash"] - amount
         if rest >= 0:
             db.execute("UPDATE users SET cash = ? WHERE id = ?", rest, user_id)
-            db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES(?, ?, ?, ?)", user_id, info["symbol"], shares, info["price"])
+            db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES(?, ?, ?, ?)",
+                       user_id, info["symbol"], shares, info["price"])
             flash("Bought!")
             return redirect("/")
         else:
@@ -184,7 +181,7 @@ def register():
 
         hash = generate_password_hash(password)
         try:
-           user_id = db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
+            user_id = db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, hash)
         except ValueError:
             return apology("User with this name already exists", 400)
         except:
@@ -214,20 +211,24 @@ def sell():
         if shares <= 0:
             return apology("Shares must be a positive number")
 
-        rows = db.execute("SELECT SUM(shares) AS sum FROM transactions WHERE user_id = ? AND symbol = ?", user_id, info["symbol"])
+        rows = db.execute(
+            "SELECT SUM(shares) AS sum FROM transactions WHERE user_id = ? AND symbol = ?", user_id, info["symbol"])
         quantity = rows[0]["sum"]
         if quantity >= 0 and quantity >= shares:
             amount = info["price"] * shares
             db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", amount, user_id)
-            db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES(?, ?, ?, ?)", user_id, info["symbol"], shares * (-1), info["price"])
+            db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES(?, ?, ?, ?)",
+                       user_id, info["symbol"], shares * (-1), info["price"])
             flash("Sold!")
             return redirect("/")
         else:
             return apology("Can't afford")
 
     else:
-        tickers = db.execute("SELECT symbol FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
+        tickers = db.execute(
+            "SELECT symbol FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
         return render_template("sell.html", tickers=tickers)
+
 
 @app.route("/change_password", methods=["GET", "POST"])
 @login_required
@@ -252,7 +253,7 @@ def change_password():
 
         hash = generate_password_hash(new_password)
         try:
-           user_id = db.execute("UPDATE users SET hash = ? WHERE id = ?", hash, user_id)
+            user_id = db.execute("UPDATE users SET hash = ? WHERE id = ?", hash, user_id)
         except ValueError:
             return apology("User with this ID not exists??", 400)
         except:
