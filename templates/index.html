@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    How many?
+{% endblock %}
+
+{% block main %}
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    let ancorLinks = document.querySelectorAll('select');
+    for (let i = 0; i < ancorLinks.length; i++)
+    {
+        ancorLinks[i].addEventListener('change', function(event) {
+            calculate();
+        })
+    }
+
+    let amount = document.querySelector('#amount');
+    amount.addEventListener('input', function(event) {
+            calculate();
+        })
+
+    // Set by default random convert
+    random();
+})
+
+function calculate()
+{
+    let from = document.querySelector('#from');
+    let to = document.querySelector('#to');
+    let result = document.querySelector('#result');
+
+    let calc = from.value / to.value * amount.value;
+    if (calc)
+    {
+        // Change maximum Digits аfter point
+        let maxfr = 10;
+        if (calc > 1000)
+            maxfr = 0;
+        else if (calc > 100)
+            maxfr = 2;
+        else if (calc > 1)
+            maxfr = 5;
+
+        result.innerHTML = amount.value  + "  " + from[from.selectedIndex].innerHTML + (from.value == to.value ? " = " : " ≈ ") + calc.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:maxfr}) + "  " + to[to.selectedIndex].innerHTML;
+        result.classList.add("alert-success");
+        let title = "How many " + to[to.selectedIndex].innerHTML + " in " + amount.value  + " " + from[from.selectedIndex].innerHTML + "?";
+        document.querySelector('h3').innerHTML = title;
+        document.querySelector('title').innerHTML = "Weird converter: " + title;
+    }
+    else
+    {
+        result.innerHTML = "";
+        result.classList.remove("alert-success");
+    }
+}
+
+function random()
+{
+    random_el('from');
+    random_el('to');
+    calculate();
+}
+
+function random_el(sel_id)
+{
+    var select = document.getElementById(sel_id);
+    var items = select.getElementsByTagName('option');
+    var index = Math.floor(Math.random() * (items.length-1))+1;
+    select.selectedIndex = index;
+}
+
+</script>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col text-start my-auto">
+            <h3 class="mb-5"></h3>
+            <div class="mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="from">From</label>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select mx-auto w-auto" name="from" id="from">
+                            <option disabled="" selected="">Choose...</option>
+                            {% for unit in units %}
+                            <option value="{{ unit['length'] }}">{{ unit["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="to">Into</label>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select mx-auto w-auto" name="to" id="to">
+                            <option disabled="" selected="">Choose...</option>
+                            {% for unit in units %}
+                            <option value="{{ unit['length'] }}">{{ unit["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="amount">Amount</label>
+                    </div>
+                    <div class="col-auto">
+                        <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="amount" id="amount" placeholder="Amount"
+                        type="number" value="1">
+                    </div>
+                  </div>
+            </div>
+
+            <div class="mb-4 form-check d-none">
+                <input type="checkbox" class="form-check-input" id="all">
+                <label class="form-check-label" for="all">All users units</label>
+            </div>
+
+            <div class="mb-4 px-0">
+                <a type="submit" class="btn btn-success" href="/add">Add a new unit</a>
+            </div>
+
+            <div class="alert mt-5 h5" role="alert" id="result"></div>
+
+        </div>
+        <div class="col-md">
+            <img src="../static/wierdcalc.png" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
