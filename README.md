@@ -1,162 +1,194 @@
 
-# Weird Length Converter
-#### Video Demo:  https://youtu.be/SeTML0uMCH0
+ # 📘 CS50x — Harvard's Introduction to Computer Science
 
-**Weird Length Converter** is a fun and educational web application designed to compare the lengths of different objects. It allows users to convert the length of one object (e.g., a parrot) into the equivalent length of another (e.g., Mount Everest). The application supports custom objects, enabling users to add their own items by specifying their lengths in meters.
+
+
+- ✅ **Completed CS50x** — 2025
+- 🏆 **My Certificate:** [https://cs50.harvard.edu/certificates/ea03d1bb-ca25-43b4-8295-855fb668a4e6]
+- 📁 **Original submissions (me50):** [https://github.com/me50/AOgit](https://github.com/me50/AOgit)
+
+  
+
+---
+Welcome to **CS50x — Harvard's Introduction to Computer Science (2025 edition)**!
+
+This repository contains my complete coursework, exercises, and projects (including the final project) for CS50x taught through edX and Harvard's official curriculum.
+
+> ⚠️ All CS50x problem sets and projects are organized into **branches and tags**. To explore my progress, please check the corresponding branches or tags.
+---
+
+
+
+
+## 🚀 About the Course
+
+**CS50x** is an entry‑level course that teaches you how to think algorithmically and solve problems efficiently. It covers fundamentals of computer science and programming using languages such as C, Python, SQL, and JavaScript, alongside essential concepts like algorithms, data structures, memory, and web development.
+
+This repository is a complete log of my journey through the course — from problem sets to my final capstone project.
 
 ---
 
-## Features
 
-1. **Length Conversion**:
-   - Users can select two items from predefined lists and calculate how many times one item's length fits into another's.
-   - The conversion is instantaneous, thanks to JavaScript.
 
-2. **Custom Object Management**:
-   - Users can add new objects by specifying their names and lengths in meters.
-   - Custom objects appear in the selection lists for future conversions.
-   - Objects can also be edited or deleted.
-
-3. **Instant Feedback**:
-   - The application utilizes JavaScript to dynamically update conversion results without reloading the page.
-
-4. **User Authentication**:
-   - Secure user login and registration system to ensure that custom objects are associated with specific users.
-   - Password management functionality (change passwords) is available.
-
-5. **Interactive Design**:
-   - The application uses intuitive forms and dropdown menus for an easy user experience.
-   - A colorful, engaging theme with graphics enhances the fun and playful nature of the app.
+📌 The primary project here is **Weird Length Converter** — a Flask‑based web application that allows users to compare and convert units in a fun & interactive way.
 
 ---
 
-## Technologies Used
+## 💡 Project — Weird Length Converter
 
-- **Frontend**:
-  - HTML
-  - CSS (Custom styles for a visually appealing layout)
-  - JavaScript (Handles dynamic updates and dropdown interactivity)
+### 🎬 Video Demo
 
-- **Backend**:
-  - Python (Flask framework powers the server-side logic)
+**Watch the demo here:**
+👉 https://youtu.be/SeTML0uMCH0
 
-- **Database**:
-  - SQLite3 (Stores user information and object data)
+---
+## 📂 Repository Contents
+
+Below you'll find the major sections included in this repository:
+
+```
+├── flask_session/      # Flask session data
+├── static/             # Static files (CSS, images)
+├── templates/          # HTML templates for web apps
+├── app.py              # Main Flask application
+├── helpers.py          # Helper functions
+├── requirements.txt    # Python dependencies
+├── weirdcalc.db        # SQLite database
+└── README.md           # This file
+```
+
+## 📌 Features & Functionality
+
+### 🔍 Core Features
+
+| Feature | Description |
+|---------|-------------|
+| Length Conversion | Convert one object's length into the equivalent of another. |
+| Custom Objects | Users can add, edit, and delete objects with custom lengths. |
+| User Accounts | Registration & login system with secure session management. |
+| Instant Feedback | JavaScript updates conversion results without reloading. |
 
 ---
 
-## Application Workflow
+## 🧠 Technologies Used
+
+| Layer | Technologies |
+|-------|--------------|
+| Backend | Python, Flask |
+| Frontend | HTML, CSS, JavaScript |
+| Database | SQLite3 |
+| Dependencies | See `requirements.txt` |
+
+---
+
+## 🛠 Application Workflow
 
 ### User Authentication
-- **Registration**:
-  - Users provide a username and password to create an account.
-  - Passwords are hashed and stored securely.
-- **Login**:
-  - After successful login, users can access the conversion tool and manage custom objects.
-- **Session Management**:
-  - Sessions are handled securely using Flask's session functionality. Only logged-in users can access specific pages (e.g., add, edit, delete objects).
+
+- **Registration**: Create account with username & password.
+- **Login**: Access converter dashboard upon successful login.
+- **Session Management**: Users remain logged in to manage custom objects.
 
 ### Conversion Logic
-- The main conversion tool is located on the homepage (`index.html`):
-  - Users select two items (e.g., "parrot" and "Everest") from dropdown menus.
-  - Input a quantity (e.g., 1 parrot).
-  - The conversion result (e.g., "1 parrot ≈ 0.0000146912 Everest") is calculated based on the ratio of their lengths (stored in meters) and displayed instantly using JavaScript.
+
+1. Select an object as the *source* and one as the *target*.
+2. Input a quantity for the source.
+3. View results instantly as equivalent units of the target object.
 
 ### Custom Object Management
-- **Add Object**:
-  - Users can add a new object by specifying its name and length in meters.
-  - The backend validates the input and stores the object in the database.
-- **Edit/Delete Object**:
-  - Users can modify or remove objects they have added.
-  - Changes are reflected immediately in the dropdown lists for conversions.
 
-### Apology/Error Handling
-- The `apology` function in `helpers.py` provides custom error messages when something goes wrong. These messages are displayed on the `apology.html` template.
-
+- Users can **add, edit, or delete** custom objects.
+- Objects are stored with names and length values (in meters).
 
 ---
-## File Structure
 
-```
-project/
-├── flask_session/          # Directory for Flask session data
-├── static/                 # Static files (CSS, images, etc.)
-│   ├── favicon.ico         # Favicon for the website
-│   ├── I_heart_validator.png # Decorative/branding image
-│   ├── styles.css          # Custom CSS styles for the website
-│   ├── wierdcalc.png       # Main banner/image used on the site
-├── templates/              # HTML templates for Flask
-│   ├── apology.html        # Template for displaying error messages
-│   ├── change_password.html # Template for changing user password
-│   ├── choose.html         # Template for selecting objects for editing and delete
-│   ├── edit.html           # Template for adding new and editing existing objects
-│   ├── index.html          # Main template for conversions
-│   ├── layout.html         # Base template for consistent layout
-│   ├── login.html          # Template for user login
-│   ├── register.html       # Template for user registration
-├── app.py                  # Main Flask application file
-├── helpers.py              # Helper functions for the Flask app
-├── README.md               # Project documentation (this file)
-├── requirements.txt        # Python dependencies for the project
-├── weirdcalc.db            # SQLite database file for storing data
+## 📁 Detailed File Breakdown
+
+### 🧩 Flask Backend
+
+- **app.py** — Main application logic — routes, session checks, and CRUD operations.
+- **helpers.py** — Utility functions (e.g., `apology()` for error messages and `login_required()` decorator).
+- **requirements.txt** — Lists all Python packages required to run the app locally.
+
+### 🖼 Frontend
+
+- **templates/** — HTML files for rendering UI pages (login, register, converter, etc.).
+- **static/** — Contains CSS styles and image assets for the web interface.
+
+### 🗃 Database
+
+- **weirdcalc.db** — Stores user accounts and custom object data in SQLite format.
+
+---
+
+## 📌 Installation & Setup
+
+To get this project running locally:
+
+**1. Clone the repo:**
+```bash
+git clone https://github.com/AOgit/CS50x.git
+cd CS50x
 ```
 
----
+**2. Create a virtual environment:**
+```bash
+python3 -m venv venv
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
+```
 
-## Code Structure
+**3. Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
 
-### **Key Files**
+**4. Run the application:**
+```bash
+python app.py
+```
 
-#### Backend (Python)
-- `app.py`:
-  - Handles all routes (e.g., `/`, `/add`, `/edit`, `/delete`).
-  - Implements CRUD operations for objects using SQLite3.
-  - Ensures session management and user-specific operations.
-- `helpers.py`:
-  - Contains helper functions, including:
-    - `apology`: Displays error messages.
-    - `login_required`: Decorator that restricts access to certain routes for logged-in users.
-
-#### Frontend (HTML/CSS/JavaScript)
-- **Templates**:
-  - Located in the `templates/` directory.
-  - Includes pages for login, registration, conversion, and object management.
-  - `layout.html`: A base template for consistent design across pages.
-- **Static Files**:
-  - CSS (`styles.css`): Provides a colorful and engaging design.
-  - Bootstrap 5.3.3 is used to ensure a responsive and modern design, providing pre-styled components and utilities for building an aesthetically pleasing user interface.
-  - JavaScript: Enables instant updates for conversions and dropdown interactivity.
-
-#### Database
-- `weirdcalc.db`:
-  - Contains tables for:
-    - `users`: Stores user credentials.
-    - `units`: Stores object names and lengths (associated with user IDs).
+**5.** Open your browser at `http://localhost:5000`
 
 ---
 
-## Example Usage
+## 🧪 Usage Examples
 
-1. **Convert Lengths**:
-   - Select "parrot" from the "From" dropdown and "Everest" from the "Into" dropdown.
-   - Enter a quantity (e.g., `1`).
-   - View the result: "1 parrot ≈ 0.0000146912 Everest."
+```python
+# Add a new object:
+POST /add-object
+{"name": "Eiffel Tower", "length": 324}
 
-2. **Add a Custom Object**:
-   - Navigate to the "Add Unit" page.
-   - Enter "Great Wall of China" and its length in meters (e.g., `21196`).
-   - Use it for future conversions!
-
----
-
-## Future Enhancements
-
-- Add unit categories (e.g., animals, landmarks) for better organization.
-- Support for additional measurement types (e.g., weight, volume).
-- Multi-language support for international users.
+# Convert 3 parrots to Everests:
+GET /convert?from=parrot&to=everest&amount=3
+```
 
 ---
 
-Enjoy converting the weirdest lengths with **Weird Length Converter**! 🦜🌏
+## 📈 Future Enhancements
+
+Potential improvements I plan to work on:
+
+- Add measurement categories (units, distances, weights)
+- Support mobile‑friendly layout
+- Add internationalization (multilingual UI)
+- Deploy to a cloud hosting provider (e.g., Render / Heroku)
 
 ---
+
+## ⚖️ License
+
+This repository is open source and licensed under the MIT License. Feel free to use and adapt it under terms of the license.
+
+---
+
+## 🧑‍💻 Acknowledgments
+
+- Harvard University & CS50 Staff for an amazing course.
+- All mentors, peers, and online communities who helped me throughout CS50.
+
+---
+
+## 📬 Contact
+
+GitHub: https://github.com/AOgit
