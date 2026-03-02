@@ -1,24 +1,39 @@
+# 📘 CS50x — Harvard's Introduction to Computer Science
 
- # 📘 CS50x — Harvard's Introduction to Computer Science
+---
 
+## 📚 Course Curriculum — CS50x 2025
 
+| Week | Topic | Skills & Concepts Covered | Status |
+|------|-------|--------------------------|--------|
+| Week 0 | 🟡 Scratch | Computational thinking, binary & ASCII representation, abstraction, algorithms, pseudocode, Scratch (functions, variables, loops, conditionals, events, threads) | ✅ Completed |
+| Week 1 | 🔵 C | C syntax, compiling, data types, variables, conditionals, loops, CLI/Linux, operators, integer overflow, floating-point imprecision, debugging | ✅ Completed |
+| Week 2 | 🔵 Arrays | Preprocessing, compiling, assembling, linking, debugging, arrays, strings, command-line arguments, cryptography | ✅ Completed |
+| Week 3 | 🔵 Algorithms | Linear & binary search, bubble/selection/merge sort, Big O notation (O, Ω, Θ), recursion | ✅ Completed |
+| Week 4 | 🔵 Memory | Pointers, dynamic memory allocation (malloc/free), stack & heap, buffer overflow, file I/O, image manipulation | ✅ Completed |
+| Week 5 | 🔵 Data Structures | Abstract data types, queues, stacks, linked lists, trees, binary search trees, hash tables, tries | ✅ Completed |
+| Week 6 | 🟢 Python | Python syntax, functions, variables, conditionals, loops, modules, packages — transitioning from C | ✅ Completed |
+| Week 6.5 | 🤖 Artificial Intelligence | Machine learning, neural networks, large language models, AI ethics, prompt engineering | ✅ Completed |
+| Week 7 | 🗄️ SQL | Relational databases, tables, data types, CRUD statements, constraints, indexes, transactions, SQL injection attacks, race conditions | ✅ Completed |
+| Week 8 | 🌐 HTML, CSS, JavaScript | Internet (TCP/IP, DNS, HTTP), HTML tags & attributes, CSS selectors & properties, JS variables, loops, DOM events, regular expressions | ✅ Completed |
+| Week 9 | 🌶️ Flask | Flask framework, routing, decorators, HTTP requests & responses, sessions, cookies, full-stack web development | ✅ Completed |
+| Week 10 | 🎓 The End | Final project, course retrospective, life beyond CS50 | ✅ Completed |
+
+---
 
 - ✅ **Completed CS50x** — 2025
 - 🏆 **My Certificate:** [https://cs50.harvard.edu/certificates/ea03d1bb-ca25-43b4-8295-855fb668a4e6]
 - 📁 **Original submissions (me50):** [https://github.com/me50/AOgit](https://github.com/me50/AOgit)
 
-  
-
 ---
+
 Welcome to **CS50x — Harvard's Introduction to Computer Science (2025 edition)**!
 
 This repository contains my complete coursework, exercises, and projects (including the final project) for CS50x taught through edX and Harvard's official curriculum.
 
 > ⚠️ All CS50x problem sets and projects are organized into **branches and tags**. To explore my progress, please check the corresponding branches or tags.
+
 ---
-
-
-
 
 ## 🚀 About the Course
 
@@ -27,8 +42,6 @@ This repository contains my complete coursework, exercises, and projects (includ
 This repository is a complete log of my journey through the course — from problem sets to my final capstone project.
 
 ---
-
-
 
 📌 The primary project here is **Weird Length Converter** — a Flask‑based web application that allows users to compare and convert units in a fun & interactive way.
 
@@ -42,6 +55,7 @@ This repository is a complete log of my journey through the course — from prob
 👉 https://youtu.be/SeTML0uMCH0
 
 ---
+
 ## 📂 Repository Contents
 
 Below you'll find the major sections included in this repository:
